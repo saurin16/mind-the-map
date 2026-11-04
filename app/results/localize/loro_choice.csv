@@ -1,0 +1,9 @@
+held_out,graph,train_file_hit5,alpha,mix,types
+fastapi,repaired,0.7903,0.7,1.0,calls+contains
+httpx,repaired,0.6693,0.7,1.0,calls+contains
+requests,repaired,0.6435,0.7,1.0,calls+contains
+rich,repaired,0.625,0.3,1.0,calls+contains
+fastapi,released,0.7742,0.7,0.5,calls
+httpx,released,0.6614,0.7,0.5,calls
+requests,released,0.6348,0.7,0.5,calls
+rich,released,0.675,0.7,1.0,calls
