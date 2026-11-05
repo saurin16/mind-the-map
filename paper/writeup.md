@@ -151,7 +151,7 @@ We thank the competitors whose public findings this work checks and extends: Ayu
 
 ## References
 
-<!-- Refs checked Nov 4 via web search. ⚠️ GAP: C2 author list not confirmed (Zhejiang University); LocAgent venue not confirmed, cited as arXiv. -->
+<!-- Refs checked Nov 4 via web search. C2 authors from arXiv 2503.22424 v2/v3. LocAgent venue not confirmed, cited as arXiv. -->
 
 - [T1] A. Thakur. Graph-tool ablations. Kaggle discussion 746250, Gemma 4 Developer Agent competition, 2026.
 - [W1] J. Wold. Data audit of the code graphs. Kaggle discussion 742911, 2026.
@@ -164,6 +164,6 @@ We thank the competitors whose public findings this work checks and extends: Ayu
 - [C1] X. Liu et al. CodexGraph: Bridging large language models and code repositories via code graph databases. NAACL 2025. arXiv:2408.03910.
 - [R1] S. Ouyang et al. RepoGraph: Enhancing AI software engineering with repository-level code graph. ICLR 2025. arXiv:2410.14684.
 - [O1] Z. Yu, H. Zhang, Y. Zhao, H. Huang, M. Yao, K. Ding, J. Zhao. OrcaLoca: An LLM agent framework for software issue localization. ICML 2025 (PMLR 267). arXiv:2502.00350.
-- [C2] CoSIL: Issue localization via LLM-driven iterative code graph searching. ASE 2025. arXiv:2503.22424.
+- [C2] Z. Jiang, X. Ren, M. Yan, W. Jiang, Y. Li, Z. Liu. CoSIL: Issue localization via LLM-driven code graph searching. ASE 2025. arXiv:2503.22424.
 - [A2] C. S. Xia et al. Agentless: Demystifying LLM-based software engineering agents. arXiv:2407.01489, 2024.
 - [P1] T. Haveliwala. Topic-sensitive PageRank. WWW 2002.
