@@ -1,0 +1,14 @@
+{
+  "id": "saurinpatel16/mind-the-map-typed-graphs-quickstart",
+  "title": "Mind the Map Typed Graphs Quickstart",
+  "code_file": "mind-the-map-typed-graphs-quickstart.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": [],
+  "dataset_sources": ["saurinpatel16/gemma4-swe-typed-graphs"],
+  "kernel_sources": [],
+  "model_sources": []
+}

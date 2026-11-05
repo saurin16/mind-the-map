@@ -101,6 +101,18 @@ def cover_fig() -> None:
     fig.savefig(OUT / "cover.png", dpi=200, facecolor=SURFACE)  # 1120x560: 2x the 560x280 minimum
 
 
+def dataset_cover_fig() -> None:
+    """Kaggle dataset cover, 560x280. The CLI crops the thumbnail from x=140..420, so the title sits in that square."""
+    fig = plt.figure(figsize=(5.6, 2.8), dpi=100, facecolor=SURFACE)
+    fig.text(0.5, 0.62, "Mind the Map", ha="center", fontsize=22, weight="bold", color=INK)
+    fig.text(0.5, 0.47, "Gemma 4 typed code graphs", ha="center", fontsize=10, color=MUTED)
+    types = ["contains", "calls", "imports", "inherits", "overrides", "tests"]
+    for i, t in enumerate(types):
+        fig.text(0.09 + i * 0.165, 0.2, t, ha="center", fontsize=8.5, color=REPAIRED if t != "calls" else RELEASED,
+                 bbox=dict(boxstyle="round,pad=0.35", fc="white", ec=GRID))
+    fig.savefig(OUT / "dataset_cover.png", dpi=100, facecolor=SURFACE)
+
+
 def pipeline_fig() -> None:
     fig, ax = plt.subplots(figsize=(11, 2.7), facecolor=SURFACE)
     ax.set_xlim(0, 11)
@@ -140,4 +152,5 @@ if __name__ == "__main__":
     pipeline_fig()
     coverage_fig()
     cover_fig()
+    dataset_cover_fig()
     print("wrote", *sorted(p.name for p in OUT.glob("fig*.png")))
