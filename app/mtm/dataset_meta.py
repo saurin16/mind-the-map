@@ -76,8 +76,8 @@ TABLE_COLS = {
 OTHER = {
     "README.md": "Datasheet: contents, rebuild instructions, key numbers, limitations.",
     "tables/table1.md": "Paper Table 1: audit of the released graph.",
-    "tables/table2.md": "Paper Table 2: localization benchmark.",
-    "tables/table_g2.md": "Repair gate table: gold-site coverage and reachability, released vs repaired.",
+    "tables/table2.md": "Paper Table 3: localization benchmark.",
+    "tables/table_g2.md": "Paper Table 2 (repair gate): gold-site coverage and reachability, released vs repaired.",
     "tables/mcnemar.md": "Exact McNemar tests between localization methods.",
     "tables/validity.md": "Benchmark card: reference fixes verifiable with the official kit (39/129).",
     "tables/validity_plus.md": "Benchmark card: verifiable with the documented environment (98/129).",

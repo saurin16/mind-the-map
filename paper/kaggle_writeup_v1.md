@@ -62,7 +62,7 @@ We rebuild each commit's graph from its source snapshot with Python's `ast`, as 
 
 Name resolution is static and conservative. It follows imports (including relative imports and re-exports), `self`/`cls` and `super()`, but never guesses the target of a call on an unknown receiver. As a result our own `calls` edges reproduce only part of the released name-matched `calls` edges; because released edges are always kept, the repaired graph never loses one.
 
-**Gate results (Table 3).**
+**Gate results (Table 2).**
 
 | | released → repaired |
 |---|---|
@@ -87,7 +87,7 @@ The repaired graphs load with the harness's own `load_graph_from_json` (127/127)
 
 Baselines: grep over code-like identifiers in the issue, BM25 over files and nodes, and 2-hop expansion on the released and repaired graphs.
 
-**Results (Table 2, 128 tasks with a localizable gold file; exact McNemar, exploratory, unadjusted).**
+**Results (Table 3, 128 tasks with a localizable gold file; exact McNemar, exploratory, unadjusted).**
 
 | method | file@1 | file@5 | file@10 | sym@5 | sym 2-hop@5 |
 |---|---|---|---|---|---|
@@ -141,7 +141,7 @@ We thank the competitors whose public findings this work checks and extends: Ayu
 
 The released map is missing whole symbol kinds and all structural relations, and its embeddings cannot be reached from text. A typed superset fixes coverage and doubles reachability without touching the harness, and the exact builder reconstruction lets anyone repeat the audit on future releases.
 
-**Resources.** Code (Apache 2.0, [github.com/saurin16/mind-the-map](https://github.com/saurin16/mind-the-map)), typed-graph additions, labels and tables as a public Kaggle Dataset ([saurinpatel16/gemma4-swe-typed-graphs](https://www.kaggle.com/datasets/saurinpatel16/gemma4-swe-typed-graphs); no Competition Data, rebuilds the full graphs from it), and a public Kaggle notebook that reproduces Table 1 from the competition data ([saurinpatel16/mind-the-map-c1-code-graph-audit](https://www.kaggle.com/code/saurinpatel16/mind-the-map-c1-code-graph-audit)).
+**Resources.** Code (Apache 2.0, [github.com/saurin16/mind-the-map](https://github.com/saurin16/mind-the-map)), typed-graph additions, labels and tables as a public Kaggle Dataset ([saurinpatel16/gemma4-swe-typed-graphs](https://www.kaggle.com/datasets/saurinpatel16/gemma4-swe-typed-graphs); no Competition Data, rebuilds the full graphs from it), a public Kaggle notebook that reproduces Table 1 from the competition data ([saurinpatel16/mind-the-map-c1-code-graph-audit](https://www.kaggle.com/code/saurinpatel16/mind-the-map-c1-code-graph-audit)), and a quickstart notebook that reproduces the headline numbers from the dataset alone ([saurinpatel16/mind-the-map-typed-graphs-quickstart](https://www.kaggle.com/code/saurinpatel16/mind-the-map-typed-graphs-quickstart)).
 
 ## References
 

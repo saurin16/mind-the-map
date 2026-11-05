@@ -22,15 +22,15 @@ Every number in the paper, one line each. Paths are relative to `app/` unless no
 - Embeddings: 4,263 nodes, cos median ≈ 0 (−0.0088 / 0.0052 / 0.0022), nn@1 ≤ 0.2%, norm median 3.89, ridge hit@10 0.245–0.265 vs chance 0.05 → `results/identity_fastapi_15661.txt`
 - `search_similar_code` takes a node id only → `notes/harness.md`
 
-## Repair (§4, Table 3)
+## Repair (§4, Table 2)
 - 0 superset violations; def sites 468/524 → 524/524; module 0/122 → 122/122; async 0/56 → 56/56; ≤2 hops 46/129 → 93/129 → 88/129 w/o contains → `results/repair/table_g2.md`, `results/repair/superset.csv`, `results/repair/gold.csv`, `results/repair/reach.csv`
 - nodes 367,985 → 529,769; edges 452,588 → 1,256,926 → `results/repair.log`, `results/repair/repair.csv`
 - 127/127 graphs load; typed-neighbour examples → `results/repair/harness_check.txt`
 - calls recall 487/1,495, 207 new (requests_7505) → `notes/gates.md` G2 limits (numbers dropped from the paper: not in a results file; qualitative only)
 - Module text = first 40 lines → `mtm/repair.py` MODULE_TEXT_LINES
 
-## Localization (§5, Table 2)
-- Table 2 values (128 tasks) → `results/localize/table2.md`
+## Localization (§5, Table 3)
+- Table 3 values (128 tasks) → `results/localize/table2.md`
 - LORO grid: α {0.3,0.5,0.7} × mix {0,0.5,1} × 32 edge subsets; picks calls+contains every repaired fold → `mtm/localize.py` `configs`, `results/localize/loro_choice.csv`
 - McNemar: c4 vs grep 31/15 p=0.026, 33/10 p=0.001; vs bm25 18/11 p=0.265, 16/11 p=0.442; vs c4_released 10/12 p=0.832; repaired vs released 2-hop sym 22/3 p<0.001 → `results/localize/mcnemar.md` (`mtm/mcnemar.py`)
 - Calibration 32.3% (n=99), 22.2% (n=27) → `results/localize/table2.md`
