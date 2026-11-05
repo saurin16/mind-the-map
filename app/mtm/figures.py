@@ -85,7 +85,7 @@ def coverage_fig() -> None:
 
 
 def cover_fig() -> None:
-    """Kaggle card + thumbnail, 560x280: the headline two-hop number, from the same row as Fig 2."""
+    """Kaggle card + thumbnail (min 560x280, saved at 2x): the headline two-hop number, from the same row as Fig 2."""
     (n0, d0), (n1, d1) = fracs(g2_all_row()["gold ≤2 hops: released → repaired → repaired w/o `contains`"])[:2]
     fig = plt.figure(figsize=(5.6, 2.8), dpi=100, facecolor=SURFACE)
     fig.text(0.06, 0.80, "Mind the Map", fontsize=20, weight="bold", color=INK)
@@ -98,7 +98,7 @@ def cover_fig() -> None:
         a.text(v + 1.5, y, f"{v:.1f}%  {lab}", va="center", fontsize=10, color=INK, weight="bold")
     a.set_xlim(0, 100)
     a.axis("off")
-    fig.savefig(OUT / "cover.png", dpi=100, facecolor=SURFACE)
+    fig.savefig(OUT / "cover.png", dpi=200, facecolor=SURFACE)  # 1120x560: 2x the 560x280 minimum
 
 
 def pipeline_fig() -> None:
