@@ -147,7 +147,7 @@ We thank the competitors whose public findings this work checks and extends: Ayu
 
 [PENDING PHASE 4: 1–2 sentences.] The released map is missing whole symbol kinds and all structural relations, and its embeddings cannot be reached from text. A typed superset fixes coverage and doubles reachability without touching the harness, and the exact builder reconstruction lets anyone repeat the audit on future releases.
 
-**Resources.** Code (Apache 2.0) [link], typed-graph additions, labels and tables as a public Kaggle Dataset ([saurinpatel16/gemma4-swe-typed-graphs](https://www.kaggle.com/datasets/saurinpatel16/gemma4-swe-typed-graphs); no Competition Data, rebuilds the full graphs from it), and a Kaggle notebook that reproduces Table 1 from the competition data [link].
+**Resources.** Code (Apache 2.0, [github.com/saurin16/mind-the-map](https://github.com/saurin16/mind-the-map)), typed-graph additions, labels and tables as a public Kaggle Dataset ([saurinpatel16/gemma4-swe-typed-graphs](https://www.kaggle.com/datasets/saurinpatel16/gemma4-swe-typed-graphs); no Competition Data, rebuilds the full graphs from it), and a public Kaggle notebook that reproduces Table 1 from the competition data ([saurinpatel16/mind-the-map-c1-code-graph-audit](https://www.kaggle.com/code/saurinpatel16/mind-the-map-c1-code-graph-audit)).
 
 ## References
 
