@@ -1,6 +1,6 @@
 # Mind the Map
 
-Code and results for *Mind the Map: Auditing and Repairing the Released Code Graphs for Small Offline Coding Agents*, a paper for the Kaggle Gemma 4 Developer Agent paper track.
+Code and results for *Mind the Map: Auditing and Repairing the Released Gemma 4 Code Graphs*, a paper for the Kaggle Gemma 4 Developer Agent paper track.
 
 - **Paper draft:** [`paper/writeup.md`](paper/writeup.md). Every number in it traces to a file through [`notes/claims.md`](notes/claims.md).
 - **Dataset** (typed-graph additions, labels, tables; no Competition Data): [kaggle.com/datasets/saurinpatel16/gemma4-swe-typed-graphs](https://www.kaggle.com/datasets/saurinpatel16/gemma4-swe-typed-graphs)

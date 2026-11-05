@@ -3,6 +3,7 @@
 Fig 2: gold edit sites present / reachable, released vs repaired (results/repair/table_g2.md, all row),
        and edges by type (released graph has `calls` only; repaired totals from the same row).
 Fig 1: pipeline diagram, labels only.
+Cover: Kaggle card/thumbnail (560x280), headline two-hop number from the same row as Fig 2.
 Run from app/: ../.venv/bin/python -m mtm.figures   -> ../paper/figures/fig{1,2}.png
 """
 import re
@@ -83,6 +84,23 @@ def coverage_fig() -> None:
     fig.savefig(OUT / "fig2.png", dpi=200, facecolor=SURFACE)
 
 
+def cover_fig() -> None:
+    """Kaggle card + thumbnail, 560x280: the headline two-hop number, from the same row as Fig 2."""
+    (n0, d0), (n1, d1) = fracs(g2_all_row()["gold ≤2 hops: released → repaired → repaired w/o `contains`"])[:2]
+    fig = plt.figure(figsize=(5.6, 2.8), dpi=100, facecolor=SURFACE)
+    fig.text(0.06, 0.80, "Mind the Map", fontsize=20, weight="bold", color=INK)
+    fig.text(0.06, 0.68, "Gemma 4 code graphs: audit + typed repair", fontsize=10, color=MUTED)
+    fig.text(0.06, 0.50, "tasks with an edit site ≤2 hops from the issue", fontsize=9, color=MUTED)
+    a = fig.add_axes((0.06, 0.12, 0.88, 0.32), facecolor=SURFACE)
+    for y, (n, d), c, lab in ((1, (n0, d0), RELEASED, "released"), (0, (n1, d1), REPAIRED, "repaired")):
+        v = 100 * n / d
+        a.barh(y, v, 0.62, color=c, lw=0)
+        a.text(v + 1.5, y, f"{v:.1f}%  {lab}", va="center", fontsize=10, color=INK, weight="bold")
+    a.set_xlim(0, 100)
+    a.axis("off")
+    fig.savefig(OUT / "cover.png", dpi=100, facecolor=SURFACE)
+
+
 def pipeline_fig() -> None:
     fig, ax = plt.subplots(figsize=(11, 2.7), facecolor=SURFACE)
     ax.set_xlim(0, 11)
@@ -121,4 +139,5 @@ if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     pipeline_fig()
     coverage_fig()
+    cover_fig()
     print("wrote", *sorted(p.name for p in OUT.glob("fig*.png")))

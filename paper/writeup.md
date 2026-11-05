@@ -1,6 +1,6 @@
-# Mind the Map: Auditing and Repairing the Released Code Graphs for Small Offline Coding Agents
+# Mind the Map: Auditing and Repairing the Released Gemma 4 Code Graphs
 
-*An exact audit of the Gemma 4 code graph, a drop-in typed repair that doubles edit-site reachability, and a pre-registered test on a 4B model.*
+*An exact audit of the Gemma 4 code graph, a drop-in typed repair that doubles edit-site reachability, and a pre-registered 4B-model test.*
 
 <!-- DRAFT v0.1 (Nov 4, 2026). Sections marked [PENDING PHASE 4] are filled after the Nov 10 00:00 UTC cutoff. Every number traces to notes/claims.md. -->
 
