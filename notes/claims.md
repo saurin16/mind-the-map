@@ -56,3 +56,14 @@ Every number in the paper, one line each. Paths are relative to `app/` unless no
 - Fig 2 coverage + edges: parsed at render time from `results/repair/table_g2.md` (all row) and `results/audit/table1.md` (released `calls` 452,588); repaired per-type totals sum to 1,256,926 (= repair.csv `edges`; `calls` 545,283 = 452,588 released + 92,695 added) → `app/mtm/figures.py` `coverage_fig`
 - Palette: categorical slots 1–2 (#2a78d6, #eb6834), validator ALL PASS on light surface
 - Word count after figures: 2,760
+
+## Phase 4 results (Nov 9, prereg amendment 3) → `app/results/phase4_analysis/summary.json`, `table.md`
+- 61 tasks (37 fastapi, 24 rich), 549 runs; excluded fastapi_14448 (1/9) → `incomplete_units`
+- Solved B0 13/183 (7.1%), B1 12/183 (6.6%), B2 16/183 (8.7%) → `per_config.solved`
+- B2−B0 +1.6 pp [−4.4, +8.2], discordant 11/8, Holm 0.848; B2−B1 +2.2 pp [−3.3, +8.2], 9/5, Holm 0.848 → `primary`
+- Tool calls 9.3/11.6/11.7; tokens 102k/127k/129k; minutes (harness duration) 6.7/7.5/8.1; gold-file read 116/126/133 of 183 → `per_config`
+- Mean agent steps to first gold read B0 2.1, B1 3.2, B2 1.8 → mean of `units.csv` gold_read_step (analysis set)
+- Failures: tests_fail 94/107/93; syntax+import 44/40/46; no_patch 26/15/23 → `failures`
+- B2 high 11/54, low 5/129 solved runs → `b2_by_confidence`
+- Stop Nov 9 04:13:55 UTC (19.8 h before cutoff) → `notes/prereg.md` amendment 3
+- Body word count (whitespace) 2,987 → `mtm.build_writeup`

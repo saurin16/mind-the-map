@@ -2,11 +2,11 @@
 
 *An exact audit of the Gemma 4 code graph, a drop-in typed repair that doubles edit-site reachability, and a pre-registered 4B-model test.*
 
-<!-- DRAFT v0.1 (Nov 4, 2026). Sections marked [PENDING PHASE 4] are filled after the Nov 10 00:00 UTC cutoff. Every number traces to notes/claims.md. -->
+<!-- v2 (Nov 9, 2026): Phase 4 results from app/results/phase4_analysis (prereg amendment 3). Every number traces to notes/claims.md. -->
 
 ## Abstract
 
-The code graph released with the Gemma 4 Developer Agent competition contains 0 of 65,415 async functions and 0 of 88,857 modules across its 127 graphs, and `calls` is its only edge type. We reconstruct its builder exactly (all 367,985 nodes explained) and audit it against Python AST ground truth: 18% of the definitions edited by the reference fixes are missing, including all 56 async ones, and only 35.7% of tasks have an edited site within two hops of a symbol named in the issue. We release a typed superset graph that keeps every released node and edge, loads unchanged in the competition harness, contains every edited definition and module, and **doubles two-hop reachability to 72.1%**. A graph localizer built on it beats grep (file Hit@10 75.0% vs 57.0%, p = 0.001) and matches BM25. We also publish a benchmark card: the public evaluation kit verifies only 39 of 129 reference fixes, and a documented environment raises this to 98. A pre-registered, multi-run evaluation of Gemma 4 E4B tests whether the repaired map helps an agent. [PENDING PHASE 4: one sentence of results.]
+The code graph released with the Gemma 4 Developer Agent competition contains 0 of 65,415 async functions and 0 of 88,857 modules across its 127 graphs, and `calls` is its only edge type. We reconstruct its builder exactly (all 367,985 nodes explained) and audit it against Python AST ground truth: 18% of the definitions edited by the reference fixes are missing, including all 56 async ones, and only 35.7% of tasks have an edited site within two hops of a symbol named in the issue. We release a typed superset graph that keeps every released node and edge, loads unchanged in the competition harness, contains every edited definition and module, and **doubles two-hop reachability to 72.1%**. A graph localizer built on it beats grep (file Hit@10 75.0% vs 57.0%, p = 0.001) and matches BM25. We also publish a benchmark card: the public evaluation kit verifies only 39 of 129 reference fixes, and a documented environment raises this to 98. A pre-registered, multi-run evaluation of Gemma 4 E4B tests whether the repaired map helps an agent. On 61 tasks (549 runs) the agent reached the edited files more often, but its solve rate did not change detectably (8.7% vs 7.1% without graph tools, CI on the difference [−4.4, +8.2] pp).
 
 ## 1. Introduction
 
@@ -120,11 +120,27 @@ Tasks come from the 98 verifiable tasks, in a fixed hash-based order stratified 
 - **Primary outcome:** per-task solve rate, comparing B2 vs B0 and B2 vs B1. Holm correction; paired task-level bootstrap CIs; exact McNemar on (task, run) pairs.
 - **Secondary, descriptive only:** tool calls, turns until the agent first reads a gold file, and a failure taxonomy (amendment 1).
 
-**Amendments.** Both amendments are logged in the same file with timestamps and the outcomes visible when they were written.
-- *Amendment 1* added the failure taxonomy as a descriptive outcome: resolved, harness error, no patch, broken syntax, broken import, hang, tests fail. It was written after 8 discarded smoke and timing runs failed, 5 of them because the agent broke its own edit.
-- *Amendment 2* fixed a stop date (Nov 10, 00:00 UTC) after the observed pace (~19 min per run, against 4.7 planned) showed that the registered N = 84 could not finish before the deadline. The primary analysis covers the tasks whose 9 runs all finished by the cutoff.
+**Amendments.** Each is logged in the same file with its timestamp and the outcomes visible when it was written.
+- *Amendment 1* added the failure taxonomy after 5 of 8 discarded smoke runs failed because the agent broke its own edit.
+- *Amendment 2* set a stop date (Nov 10, 00:00 UTC) once the observed pace (~19 min per run, against 4.7 planned) ruled out N = 84. The analysis covers tasks whose 9 runs all finished.
+- *Amendment 3* is a deviation. We stopped 20 h before that cutoff (Nov 9, 04:14 UTC) because the laptop kept sleeping on battery. The decision was made on time alone, before any analysis. The analysis set is the first 61 tasks of the fixed order (37 fastapi, 24 rich; 549 runs); one partly run task is excluded. Wall time comes from the harness, since sleep inflated the driver's clock.
 
-**Results.** [PENDING PHASE 4: Table 4 — solve rate ± 95% CI per config; B2−B0 and B2−B1 effect with CI and Holm-adjusted p; tool calls; turns to first gold-file read; failure taxonomy per config; B2 by confidence label. Report N as observed.]
+**Results (Table 4).** The map gave no detectable gain at this N. B2 solved 16 of 183 runs, against 13 for B0 and 12 for B1, and both primary confidence intervals include zero.
+
+| config | solved runs | tool calls | tokens | minutes | runs that read a gold file |
+|---|---|---|---|---|---|
+| B0 | 13/183 (7.1%) | 9.3 | 102k | 6.7 | 116 (63%) |
+| B1 | 12/183 (6.6%) | 11.6 | 127k | 7.5 | 126 (69%) |
+| B2 | 16/183 (8.7%) | 11.7 | 129k | 8.1 | 133 (73%) |
+
+| comparison | effect | 95% CI | discordant runs | Holm p |
+|---|---|---|---|---|
+| B2 − B0 | +1.6 pp | [−4.4, +8.2] | 11 vs 8 | 0.85 |
+| B2 − B1 | +2.2 pp | [−3.3, +8.2] | 9 vs 5 | 0.85 |
+
+Secondary measures (descriptive, untested):
+- **Navigation.** B2 reached the edited files more often and sooner: it read a gold file in 73% of runs, after a mean of 1.8 agent steps (B1: 3.2). The limit appears to be the edit, not finding the code.
+- **Failures.** Tests failing at run time are the most common class (93–107 runs per config). The agent breaks its own edit (syntax or import errors) in 40–46 runs per config, and submits no patch in 15–26. The B2 confidence label separates outcomes: 11 of 54 high-confidence runs solved, against 5 of 129 low-confidence runs. This split is exploratory.
 
 ## 7. Related work
 
@@ -141,11 +157,11 @@ We thank the competitors whose public findings this work checks and extends: Ayu
 - Four repositories, two of them dominant (fastapi and rich make up 115 of 129 tasks). The leave-one-repo-out folds for httpx (1 task) and requests (13) are small.
 - Static resolution misses dynamic calls, so the repaired `calls` relation has partial recall.
 - The agent study uses one small model with 4-bit weights and a local environment that differs from the competition's scoring environment.
-- The agent study stops at a fixed date (amendment 2), so its N is smaller than registered.
+- The agent study stopped early (amendments 2–3): 61 of the 84 registered tasks. At this N, effects smaller than about ±6 points cannot be detected.
 
 ## 9. Conclusion
 
-[PENDING PHASE 4: 1–2 sentences.] The released map is missing whole symbol kinds and all structural relations, and its embeddings cannot be reached from text. A typed superset fixes coverage and doubles reachability without touching the harness, and the exact builder reconstruction lets anyone repeat the audit on future releases.
+For a 4B agent, a better map helped it reach the edited files more often but did not detectably raise its solve rate (+1.6 pp, CI [−4.4, +8.2]); the limiting step appears to be making a correct edit. The released map is missing whole symbol kinds and all structural relations, and its embeddings cannot be reached from text. A typed superset fixes coverage and doubles reachability without touching the harness, and the exact builder reconstruction lets anyone repeat the audit on future releases.
 
 **Resources.** Code (Apache 2.0, [github.com/saurin16/mind-the-map](https://github.com/saurin16/mind-the-map)), typed-graph additions, labels and tables as a public Kaggle Dataset ([saurinpatel16/gemma4-swe-typed-graphs](https://www.kaggle.com/datasets/saurinpatel16/gemma4-swe-typed-graphs); no Competition Data, rebuilds the full graphs from it), a public Kaggle notebook that reproduces Table 1 from the competition data ([saurinpatel16/mind-the-map-c1-code-graph-audit](https://www.kaggle.com/code/saurinpatel16/mind-the-map-c1-code-graph-audit)), and a quickstart notebook that reproduces the headline numbers from the dataset alone ([saurinpatel16/mind-the-map-typed-graphs-quickstart](https://www.kaggle.com/code/saurinpatel16/mind-the-map-typed-graphs-quickstart)).
 

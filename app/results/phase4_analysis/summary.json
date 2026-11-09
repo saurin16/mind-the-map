@@ -1,0 +1,131 @@
+{
+ "n_tasks": 61,
+ "repos": {
+  "fastapi": 37,
+  "rich": 24
+ },
+ "incomplete": [
+  "fastapi_14448"
+ ],
+ "incomplete_units": {
+  "fastapi_14448": 1
+ },
+ "primary": {
+  "B2-B0": {
+   "effect": 0.01639344262295082,
+   "ci": [
+    -0.04371584699453552,
+    0.08196721311475409
+   ],
+   "only_a": 11,
+   "only_b": 8,
+   "p": 0.6476058959960938,
+   "p_holm": 0.847900390625
+  },
+  "B2-B1": {
+   "effect": 0.021857923497267763,
+   "ci": [
+    -0.03278688524590164,
+    0.0819672131147541
+   ],
+   "only_a": 9,
+   "only_b": 5,
+   "p": 0.4239501953125,
+   "p_holm": 0.847900390625
+  }
+ },
+ "secondary": {
+  "B1-B0": {
+   "effect": -0.005464480874316942,
+   "ci": [
+    -0.04371584699453552,
+    0.0273224043715847
+   ],
+   "only_a": 6,
+   "only_b": 7,
+   "p": 1.0
+  }
+ },
+ "per_config": {
+  "B0": {
+   "units": 183,
+   "solved": 13,
+   "tool_calls": 9.316939890710383,
+   "tokens": 102268.73224043715,
+   "minutes": 6.69293897996357,
+   "read_gold": 116,
+   "steps_to_gold_median": 1.0
+  },
+  "B1": {
+   "units": 183,
+   "solved": 12,
+   "tool_calls": 11.628415300546449,
+   "tokens": 126536.33333333333,
+   "minutes": 7.466995446265938,
+   "read_gold": 126,
+   "steps_to_gold_median": 2.0
+  },
+  "B2": {
+   "units": 183,
+   "solved": 16,
+   "tool_calls": 11.6775956284153,
+   "tokens": 129286.64480874316,
+   "minutes": 8.07349635701275,
+   "read_gold": 133,
+   "steps_to_gold_median": 1
+  }
+ },
+ "per_repo_solved": {
+  "B0": {
+   "fastapi": 9,
+   "rich": 4
+  },
+  "B1": {
+   "fastapi": 6,
+   "rich": 6
+  },
+  "B2": {
+   "fastapi": 13,
+   "rich": 3
+  }
+ },
+ "b2_by_confidence": {
+  "high": {
+   "tasks": 18,
+   "solved": 11
+  },
+  "low": {
+   "tasks": 43,
+   "solved": 5
+  }
+ },
+ "failures": {
+  "B0": {
+   "resolved": 13,
+   "harness_error": 0,
+   "no_patch": 26,
+   "broken_syntax": 27,
+   "broken_import": 17,
+   "hang": 6,
+   "tests_fail": 94
+  },
+  "B1": {
+   "resolved": 12,
+   "harness_error": 2,
+   "no_patch": 15,
+   "broken_syntax": 19,
+   "broken_import": 21,
+   "hang": 7,
+   "tests_fail": 107
+  },
+  "B2": {
+   "resolved": 16,
+   "harness_error": 3,
+   "no_patch": 23,
+   "broken_syntax": 30,
+   "broken_import": 16,
+   "hang": 2,
+   "tests_fail": 93
+  }
+ }
+}
